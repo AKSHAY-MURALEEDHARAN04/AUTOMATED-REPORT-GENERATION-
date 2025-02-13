@@ -1,48 +1,83 @@
 # AUTOMATED-REPORT-GENERATION-
-COMPANY:CODTECH IT SOLUTIONS NAME:AKSHAY.M INTERN ID:CT08NAH DOMAIN:PYTHON BATCH DURATION:January 15th/2025 to February 15th/2025
 
-DESCRIPTION
+COMPANY:CODTECH IT SOLUTIONS
+NAME:AKSHAY.M
+INTERN ID:CT08NEP
+DOMAIN:PYTHON
+BATCH DURATION:January 15th/2025 to February 15th/2025
 
-Data Analysis Report Generator
+### Description of the Script
 
-Overview
+This Python script is a versatile tool designed for analyzing CSV data and generating a professional PDF report summarizing the data. It combines the power of `pandas` for data manipulation and analysis with the `FPDF` library for creating formatted PDF documents. The script is ideal for professionals, data analysts, and developers who need to quickly analyze datasets and present their findings in a readable format.
 
-This Python script is designed to read data from a CSV file, analyze it, and generate a well-formatted PDF report. It leverages the pandas library to process and analyze the dataset and the fpdf library to create a structured PDF report. The script is useful for automating data analysis and report generation, making it ideal for professionals and researchers who work with structured data.
+---
 
-How It Works
+### Script Breakdown
 
-Reading and Analyzing Data
-The script first reads the input CSV file using the pandas library. The function analyze_data() loads the dataset into a DataFrame and then computes summary statistics using describe(). This provides insights into the dataset, such as mean, standard deviation, minimum, and maximum values. The summary includes all data types, ensuring both numerical and categorical columns are considered.
+#### 1. **Importing Required Libraries**
+The script imports two primary libraries:
+- `pandas`: Used for reading the CSV file and generating descriptive statistics of the data.
+- `fpdf`: Facilitates the creation of a PDF report, allowing for customized formatting and layout.
 
-Generating a PDF Report
-Once the data analysis is complete, the script generates a structured PDF report using the FPDF library. The generate_pdf_report() function performs the following tasks: • Creates a new PDF document: A fresh PDF file is initialized with auto page breaks enabled to prevent text overflow. • Adds a title: The title “Data Analysis Report” is centered at the top of the page using a bold font. • Generates table headers: The column names from the summary statistics are used as table headers, formatted in bold. • Populates the table: The computed summary statistics are added row by row, ensuring numerical values are rounded for readability. • Saves the PDF: The final formatted report is saved as a PDF file in the specified location.
+---
 
-Installation and Dependencies
+#### 2. **Functions**
 
-To run this script, ensure that Python and the required dependencies are installed. Install the necessary libraries using:
+##### a) `analyze_data(file_path)`
+- **Purpose**: Reads the data from a CSV file and generates descriptive statistics.
+- **Input**: Path to the CSV file (`file_path`).
+- **Output**:
+  - `df`: The DataFrame containing the dataset.
+  - `summary`: A DataFrame containing the summary statistics (e.g., count, mean, standard deviation, min, max).
+- **Process**: 
+  - Reads the CSV file using `pandas.read_csv()`.
+  - Computes descriptive statistics using `DataFrame.describe(include="all")`, which includes both numerical and categorical data.
 
-pip install pandas fpdf
+##### b) `generate_pdf_report(summary, output_file)`
+- **Purpose**: Generates a PDF report summarizing the data analysis.
+- **Input**:
+  - `summary`: The summary statistics DataFrame.
+  - `output_file`: Name of the PDF file to save the report.
+- **Output**: A PDF file containing a formatted table of the summary statistics.
+- **Process**:
+  - Initializes an `FPDF` object and sets up the page layout.
+  - Adds a title to the report and includes a table to display the summary statistics.
+  - Iterates over the summary DataFrame to dynamically populate the PDF with headers and content.
+  - Saves the PDF file to the specified path.
 
-Usage 1. Prepare a CSV File • Ensure you have a CSV file (data.csv) containing structured data in the same directory as the script. 2. Run the Script • Execute the script using:
+---
 
-python script.py
+#### 3. **Execution**
+The script can be executed as a standalone program. Upon execution:
+- The user specifies the CSV file (`data.csv` by default) and the desired output PDF file name (`report.pdf` by default).
+- The script attempts to:
+  1. Analyze the CSV data using `analyze_data()`.
+  2. Generate a PDF report with the analysis using `generate_pdf_report()`.
+- If any errors occur (e.g., file not found, incorrect file format), they are caught and displayed with an appropriate error message.
 
-3.	View the Generated Report
-•	The script will create a file named report.pdf containing the data analysis summary.
-Code Structure
+---
 
-analyze_data(file_path) • Reads the CSV file into a pandas DataFrame. • Computes summary statistics using df.describe(include="all"). • Returns the original dataset and summary statistics.
+### Key Features
+- **Data Analysis**: Computes comprehensive statistics such as count, mean, standard deviation, minimum, and maximum for numerical data, and unique values and frequency for categorical data.
+- **Dynamic PDF Report**: Creates a well-structured PDF report with a title and a tabular format, automatically adjusting to the input data's structure.
+- **Error Handling**: Ensures the script gracefully handles errors, making it robust for various use cases.
 
-generate_pdf_report(summary, output_file) • Initializes an FPDF object. • Adds a title and formatted table to the PDF. • Iterates through the summary statistics and writes data into table cells. • Saves the output as a PDF file.
+---
 
-Main Execution Block • Specifies the input CSV file (data.csv) and output PDF file (report.pdf). • Calls analyze_data() to process the data. • Calls generate_pdf_report() to create the report. • Handles potential errors gracefully using a try-except block.
+### How to Use
+1. Place the script in a directory with the required CSV file (`data.csv` by default).
+2. Update the `input_file` variable if the file name differs.
+3. Run the script in a Python environment.
+4. Locate the generated PDF report in the specified output path.
 
-Error Handling
+---
 
-The script includes basic error handling to catch and display errors related to file reading and data processing. If an invalid file path is provided or the CSV file is not properly formatted, the script will print an error message and exit gracefully.
+### Applications
+This script is suitable for:
+- Automating data reporting tasks.
+- Providing quick summaries of datasets for business insights.
+- Converting raw CSV data into presentable PDF reports.
 
-Future Enhancements • Add Data Visualization: Generate charts/graphs using matplotlib and embed them in the PDF report. • Customizable Report Format: Allow users to specify font styles, colors, and layouts. • Dynamic File Input: Accept CSV file paths via command-line arguments. • Support for Large Datasets: Implement pagination in the PDF report for better readability.
+By integrating the functionalities of `pandas` and `FPDF`, this script serves as a practical solution for data analysis and reporting workflows.
 
-Conclusion
 
-This script automates the process of analyzing a dataset and generating a professional PDF report. It is a simple yet powerful tool for data analysis, providing quick insights in a structured format. By integrating additional features, such as visualization and customization options, this script can be extended to handle more complex reporting needs.
